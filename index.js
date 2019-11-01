@@ -1,150 +1,304 @@
-'use strict';
+'use strict'
 
-/** Basic Types */
+/* Define a function `addFour()` that takes a single argument 
+   and returns a value 4 greater than the input.*/
+   function addFour(p1){
+    p1 + 4;
+    return p1;
+   }
 
-//Define a new variable `motto` for the value "The iSchool is my school"
-let motto = "The iSchool is my school";
+   
+/* Create and log a variable `twelve` that is the result of passing 8 to your
+   addFour() function. */
+   let twelve = 12;
+   addFour(twelve);
+   console.log("Create and log a variable `twelve` that is the result of passing 8 to your addFour function: " + twelve);
 
+   
+/* Create and log a variable `twelveString` that is the result of passing "8" 
+   (a string) to your addFour() function. Consider what this tells you about how
+  the function should be explained (e.g., in a comment). */
+  let twelveString = "8";
+  addFour(twelveString);
+  console.log("Create and log a variable `twelveString` that is the result of passing '8' (a string) to your addFour() function: " + twelveString);
+  console.log("the type of twelveString after addFour is: " + typeof twelveString);
+  // addFour(twelveString) returns a String "8"
 
-//Log out the motto
-console.log(motto);
+/* Define a function `compoundInterest()` that takes three parameters: 
+     1. an initial bank balance (principle, in dollars)
+     2. an annual interest rate (as a decimal, e.g., 0.01) 
+     3. a number of years
+   The function should calculate the continuous compound interest
+     (https://en.wikipedia.org/wiki/Compound_interest#Continuous_compounding) 
+   and *return* the resulting total balance after that many number of years
 
-//Define a variable `mottoLength` that stores the length of the motto.
-//Use the `.length` property
-//Log out the length.
-let mottoLength = motto.length;
-console.log(mottoLength);
+   You can call the method and log the result to check your work. Compare to
+     http://www.mathwarehouse.com/calculators/continuous-compound-interest-calculator.php
+*/
 
-//Use the `indexOf()` String method to see if the word "cool" is in the string.
-//See http://www.w3schools.com/jsref/jsref_obj_string.asp for String methods
-//Log out a _boolean_ whether it is or not.
+  // p(t) = p * e ^(r*t)
+  // p = initial quantity,  t = time ,  k = annual interest rate , e = natural logarithmic constant (approx 2.71828)
+  // ALT EQUATION: let value = balance * 2.71828 ^ (interestRate * years);
 
-// how do i search the motto "The iSchool is my school" for "COOL"????
-let mottoIndex = motto.indexOf("cool");
-console.log("USING indexOF:" + mottoIndex);
-
-if(mottoIndex[] === 'cool'){
-    console.log(mottoIndex === 'cool');
-    console.log(true);
-} else{
-    console.log(false);
+function compoundInterest(balance, interestRate, years){
+  let finalValue = balance * Math.pow(2.71828, interestRate * years);
+  return finalValue;
 }
 
 
-//Use a String method to replace the word "iSchool" in the `motto` variable with
-//the words "Information School". The new value should be re-assigned to the
-//`motto` variable.
-//Log out the updated motto.
-// "The iSchool is my school" --> "The INFORMATION SCHOOL is my school"
-
-let newMotto = motto.replace('iSchool','Information School');
-console.log(newMotto);
+let testCompound = compoundInterest(1, 0.01, 1);
+console.log("TEST COMPOUND INTEREST: " + testCompound);
 
 
-//Calculate the ratio between the length of the updated motto and the length of 
-//the old (which you had saved in a variable!). Log out this ratio as a 
-//percentage with two decimal places of precision (e.g., `"123.45%"`).
-//You can use the `.toFixed()` Number method to specify the precision. 
-let mottoRatio1 = (motto.length / newMotto.length);
-let mottoRatio2 = mottoRatio1.toFixed(2);
-console.log('The ratio of the lengths of Motto and the New Motto is:');
-console.log(mottoRatio2);
+
+/* Define a function `fizzBuzz()` that takes in a single number as an argument.
+   The function should *return* an _array_ of numbers from 1 to the argument. 
+   But for multiples of three, the array should contain "Fizz" instead of the 
+   number. For multiples of five, the array should contain "Buzz" instead of the 
+   number. For numbers which are multiples of both three and five, the array 
+   should contain "FizzBuzz" instead of the number.
+   The returned array should be empty for arguments less than 1. */
+
+   let array = [];
+   var i;
+   var n;
+   var index = array.indexOf(n); // STUCK: WONT REPLACE VALUE
+
+   function fillArray(n){
+   for(i=0; i < n; i++){
+    array[i] = i+1;
+   }
+   return array;
+   }
+
+   function fizzBuzz(n){
+     fillArray(n);
+
+    if (n < 1){
+      array[index] = '';
+    } else if (n % 3 === 0 && n % 5 === 0){
+      array[index] = "FizzBuzz";
+    } else if(n % 5 === 0){
+      array[index] = "Buzz";
+    } else if(n % 3 === 0){
+      array[index] = "Fizz";
+   }
+   return array;
+  }
+
+   let testFizz = 10;
+   console.log( "testFizz value: " + testFizz + " /// fizzBuzz(testFizz) new array: /// " + fizzBuzz(testFizz) );
 
 
-/** Arrays **/
 
-//Create an array `numbers` that contains these 10 numbers:
-//    1 4 1 5 9 2 6 5 3 5
-//Log out the array.
-let numbers = [1, 4, 1, 5, 9, 2, 6, 5, 3, 5];
-console.log("ARRAY BEFORE 4.2" + numbers );
+/* Define a function `getLetterFrequencies()` that takes in a single string as 
+   an argument. The function should *return* an Object whose keys are characters
+   (letters) and whose values are the number of times that character appears in
+   the argument. Your function should be case sensitive.
+   _Hint:_ start with an empty Object, then loop through the letters one at a
+   time (you can access them with bracket notation, like with an array). For 
+   each letter, increase the value associated with that key by one. 
+   ***** Watch out for if the letter is not in the Object yet! *****
+   You can test this method with a word like "Mississippi". */
+
+   let q;
+   let inputString;
+   let char;
+   let frequency;
+   let functionObject; // object thats returned
+
+   function getLetterFrequencies(inputString){
+      frequency = {};
+      for (q=0; q < inputString.length ; q++){
+        char = inputString.charAt(q);
+        if (frequency[char]){
+          frequency[char]++;
+        } else{
+          frequency[char] = 1;
+        }
+      }
+    return frequency;
+   };
+
+   console.log("getLetterFrequencies " + getLetterFrequencies('Missisippi'));
+   // FIX THIS LATER
+   
+
+/* Create a variable `deck` that represents a deck of modern playing cards
+   (https://en.wikipedia.org/wiki/Playing_card). This variable should be an
+   *array* of 52 elements, each of which is an Object with properties:
+     - `suit`, with a string value that is either `"hearts"`, `"diamonds"`, 
+       `"clubs"`, or `"spades"`
+     - `rank`, with an integer value ranging from 2 to 14 inclusive (values 
+        11-14 represent a Jack, Queen, King, or Ace respectively).
+    Tip: use a pair of nested loops to add each combination of suit and rank to 
+    the `deck` array! 
+    
+    You can log out the `deck` to check your work! */
+
+let deck = [];
+let suit = ["hearts", "diamonds", "clubs", "spades"];
+let rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King", "Ace"];
+let x;
+let j;
+let card;
+
+for(x = 0; x < suit.length; x++){
+  for(j = 0; j < rank.length; j++){
+    card = {Rank: rank[j], Suit: suit[x]};
+    deck.push(card);
+  }
+}
+
+console.log(deck);
+
+//You can test the below functions by creating e.g., a `pokerHand` array that 
+//contains five cards from the `deck`.
+
+// pokerHand = [{Rank: 7, Suit: "hearts"}, {Rank: 2, Suit: "spades"}, {Rank: "Ace", Suit: "diamonds"}, {Rank: "Jack", Suit: "hearts"}, {Rank: 7, Suit: "hearts"}];
+// console.log(pokerHand);
+
+// STUCK ON THIS 
+let k;
+let random;
+let pokerCard;
+
+function pokerHand(){ // make function that generates an array from 5 random variables in "deck" to be your "Poker Hand"
+  for (k = 0; k < 5 ; k++){ // loop through 5 card array
+    pokerCard[k] = Math.floor(Math.random() * deck.length); // select random card from deck
+    // ISSUE???? CANNOT SET PROPERTY "0" OF UNDEFINED???
+    random.push(pokerCard); // update current array slot K with card
+  }
+  return pokerCard;
+}
+
+console.log(pokerHand());
 
 
-//Use bracket notation to change the `4` in the array to a `4.2`.
-//Log out the updated array.
-numbers[1] = 4.2;
-console.log("UPDATED ARRAY WITH 4.2" + numbers);
+/* Define a function `containsQueenOfHearts()` that takes in an array of "card"
+   objects (e.g., a Poker hand) and returns whether or not the Queen of Hearts
+   is in that array.
+   Hint: use a loop to check each card. */
+
+  let c1;
+  let statusTrue = "queen of hearts exists";
+  let statusFalse = "queen of hearts doesn't exist";
+
+  function containsQueenOfHearts(pokerHand){
+    for(c1 = 0; c1 < pokerHand.length; c1++){ // search through each card in Array. do i need to make a second for loop to check each individual array slot???
+      if(pokerHand.indexOf("{Rank: 7, Suit: "hearts"}")){
+        console.log(statusTrue);
+      } else{
+        console.log(statusFalse);
+      }
+    }
+  }
+  console.log(containsQueenOfHearts(pokerHand));
+
+/* Define a function `getHighCard()` that takes in an array of "card" objects
+  and returns the card object with the highest value. The "high card" is the one
+  with the highest rank. Cards of different suits but the same rank are 
+  considered to have the same value, and either is a valid result */
+
+  // ORDER OF RANK: 2, 3, 4, 5, 6, 7, 8, 9, JACK, QUEEN, KING, ACE
+  // all 
+  // suits do not matter, 2 cards with different suit but same rank = equal. 
+  // RETURN EVERY CARD ELIGIBLE TO BE HIGHEST
+
+  // DONT KNOW HOW TO READ THROUGH STRING {Rank: 7, Suit: "hearts"} ??????????
+  let currentHighCard;
+
+  function getHighCard(pokerHand){
+  for(c1 = 0; c1 < pokerHand.length ; c1++){ // 1. check through each array slot, and read string
+    if(typeof pokerhand[c1] === string){ // 2. CHECK IF "RANK:" IS A J/Q/K/A VALUE FIRST 
+      if(pokerhand[c1].contains("Rank: Ace")){ // 3a. do series of if/else statements to check if J/Q/K/A IS HIGHEST 
+      currentHighCard = pokerhand[c1];
+      } else if(pokerhand[c1].contains("Rank: King")){
+        currentHighCard = pokerhand[c1];
+      } else if(pokerhand[c1].contains("Rank: Queen")){
+        currentHighCard = pokerhand[c1];
+      } else if(pokerhand[c1].contains("Rank: Jack")){
+        currentHighCard = pokerhand[c1];
+      }
+    } else{ // 3b. AUTOMATICALLY RESORTS TO SORTING NUMBERS. THEN CHECK WHICH NUMBER IS HIGHEST
+      if (pokerhand[c1].contains("Rank: 9")){
+        currentHighCard = pokerhand[c1];
+      } else if (pokerhand[c1].contains("Rank: 8")){
+        currentHighCard = pokerhand[c1];
+      } else if (pokerhand[c1].contains("Rank: 7")){
+        currentHighCard = pokerhand[c1];
+      } else if (pokerhand[c1].contains("Rank: 6")){
+        currentHighCard = pokerhand[c1];
+      } else if (pokerhand[c1].contains("Rank: 5")){
+        currentHighCard = pokerhand[c1];
+      } else if (pokerhand[c1].contains("Rank: 4")){
+        currentHighCard = pokerhand[c1];
+      } else if (pokerhand[c1].contains("Rank: 3")){
+        currentHighCard = pokerhand[c1];
+      } else if (pokerhand[c1].contains("Rank: 2")){
+        currentHighCard = pokerhand[c1];
+      }
+    }
+  }
+  return currentHighCard;
+}
+
+console.log("the High Card is: " + getHighCard);
+  
+
+/* Define a function `isFlush()` that takes in an array of "card" objects and
+   returns whether or not the cards all have the same _suit_. */
+
+// 1. loop through all array values
+// 2. take first value, and check second value. if === keep going. keep repeating until end of array. 
+// 2a. STOP AT 4TH ARRAY VALUE SO IF YOU HIT END OF ARRAY (5) YOU DONT EXCEED TO VALUE 6
+ // 3. if =/= at any point in time: STOP
+
+ let isSameSuit;
+ let sameTrue = "SAME SUIT";
+ let sameFalse = "NOT SAME SUIT";
+
+function isFlush(pokerHand){
+  for (c1=0 ; c1 > pokerHand.length ; c1++){
+    if(pokerHand[c1] == pokerHand[c1 + 1] && c1 !== 5){ 
+      isSameSuit = sameTrue;
+    } else{
+      isSameSuit = sameFalse;
+      return; // stop immediately
+    }
+  }
+  return isSameSuit;
+}   
+
+console.log(isFlush(pokerHand));
+
+/* Extra challenge: define a function `hasPair()` that takes in an array of 
+   "card" objects and returns whether or not there is at least one _pair_ (two 
+   cards with the same _rank_) in the array.
+   Double challenge: return the rank of the pair of cards with the highest rank 
+   (e.g., if the hand contains more than one pair!) */
 
 
-//Add the number 3 to the END of the array.
-//Log out the updated array.
-let newNumbers = numbers.concat(3);
-console.log("add 3 to end of array by using CONCAT " + newNumbers);
 
-//Find the median (middle) value of the numbers in the array.
-//Hint: sort() the array, then access the middle index of the sorted values.
-//You can use the `Math.floor()` function to round to a whole number.
-//Log out the median value.
-
-newNumbers.sort();
-console.log("AFTER USING .sort() : " + newNumbers);
-
-let median = newNumbers[Math.floor(newNumbers.length / 2)];
-console.log("THE MEDIAN IS : " + median);
-
-/** Objects **/
-
-//Create a variable `rect` that represents a rectangle. This should be an Object
-//with properties:
-//  `x` (coordinate) of 30, `y` of 50, `width` of 100, `height` of 50
-//Log out the rectangle object
-
-// let canvas = document.getElementById("myCanvas");
-let rect = {x:30, y:50, width:100, height:50};
-console.log(rect);
-
-//Log out the x- and y- coordinates of the rectangle (its location). Your output 
-//should have the format `"X, Y"`.
-console.log(" THE X,Y COORDINATE " + "X, " + rect.x + " Y " + rect.y);
-
-
-//Set the rectangle's height to be the square root of its width. (Use the 
-//`Math.sqrt()` function).
-//Use *dot notation* to access the properties!
-rect.height = Math.sqrt(rect.width);
-console.log("updated height: " + rect.height);
-
-//Log out the rectangle's area. Use *dot notation* to access the properties!
-let rectArea = (rect.width * rect.height);
-console.log("RECTANGLE AREA: " + rectArea);
-
-//Create a variable `circle` that represents a circle. This should be an object
-//with properties:
-//  `cx` (center-x-coordinate) of 34, 
-//  `cy` of 43,
-//  `radius` equal to the LAST value in the (sorted) `numbers` array.
-//Log out the circle
-
-let circle = {cx: 34, cy: 43, radius: newNumbers[10]};
-console.log(circle);
-
-//Create an array `shapes` that represents a list of shapes. The array should
-//contain the rectangle and the circle objects defined above.
-//Log out the variable. Be sure to inspect it in the developer console!
-
-let shapes = [rect, circle];
-console.log(shapes);
-
-//Add a new ANONYMOUS object (e.g., one passed in directly without its own
-//variable name) representing a right triangle to the `shapes` array.
-//The triangle should have a `base` of 33 and a `height` of 44.
-//Log out the updated shapes array.
-
-shapes.push({base: 33, height: 44});
-console.log(shapes);
-
-//Log out the triangle's `hypotenuse` property (don't calculate it, just log out
-//the current property value!). What do you get?
-
-
-console.log("TRIANGLE HYPOTENUSE " + Math.hypot(shapes[2].base, shapes[2].height));
-
-//Assign the triangle inside the `shapes` array a 'hypotenuse' property of `55`.
-//Log out the `shapes` array again.
-//Visually check: what happens if you inspect the previously logged array in the 
-//Chrome developer console?
-
-let hypo = 55;
-shapes[2] = {base: 33, height: 44, hypotenuse: hypo};
-console.log(shapes);
-// ask professor is this was the correct way to solve
+//Make functions and variables available to tester. DO NOT MODIFY THIS.
+if(typeof module !== 'undefined' && module.exports){
+  /* eslint-disable */
+  if(typeof addFour !== 'undefined') 
+    module.exports.addFour = addFour;
+  if(typeof twelveString !== 'undefined') 
+    module.exports.twelveString = twelveString;
+  if(typeof compoundInterest !== 'undefined') 
+    module.exports.compoundInterest = compoundInterest;
+  if(typeof fizzBuzz !== 'undefined') 
+    module.exports.fizzBuzz = fizzBuzz;
+  if(typeof getLetterFrequencies !== 'undefined')
+    module.exports.getLetterFrequencies = getLetterFrequencies;
+  if(typeof deck !== 'undefined')
+    module.exports.deck = deck;
+  if(typeof containsQueenOfHearts !== 'undefined')
+    module.exports.containsQueenOfHearts = containsQueenOfHearts;
+  if(typeof getHighCard !== 'undefined')
+    module.exports.getHighCard = getHighCard;
+  if(typeof isFlush !== 'undefined')
+    module.exports.isFlush = isFlush;
+}
